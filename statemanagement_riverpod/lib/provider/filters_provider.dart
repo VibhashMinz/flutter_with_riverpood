@@ -38,7 +38,8 @@ final filterMealsProvider =
         (ref) => FilterMealsNotifier());
 
 final filteredMealsProvider = Provider((ref) {
-  ref.watch(mealsProvider);
+  final meals = ref.watch(mealsProvider);
+  final activeFilters = ref.watch(filterMealsProvider);
   return meals.where((meal) {
     if (activeFilters[Filter.glutenFree]! && !meal.isGlutenFree) {
       return false;
